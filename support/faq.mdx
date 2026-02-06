@@ -1,0 +1,84 @@
+---
+title: "FAQ"
+description: "Frequently asked questions"
+icon: "circle-question"
+---
+
+## General
+
+<AccordionGroup>
+  <Accordion title="What is ExpertEngine?">
+    ExpertEngine is an AI-powered data analytics platform. It helps you connect to your databases, run queries, and get insights using natural language with our AI assistant, Genie.
+  </Accordion>
+
+<Accordion title="Do I need to know SQL?">
+  No! Genie can generate SQL for you based on natural language questions.
+  However, knowing SQL helps you customize and refine queries.
+</Accordion>
+
+  <Accordion title="What databases do you support?">
+    We support PostgreSQL, MySQL, BigQuery, Snowflake, Redshift, SQLite, and more. See [Connectors](/getting-started/connectors) for the full list.
+  </Accordion>
+</AccordionGroup>
+
+## Genie
+
+<AccordionGroup>
+  <Accordion title="How accurate is Genie?">
+    Genie is highly accurate for common queries. For complex analyses, we recommend reviewing the generated SQL before running. You can always modify the query if needed.
+  </Accordion>
+
+<Accordion title="What questions can I ask Genie?">
+  You can ask about counts, sums, averages, trends, comparisons, and more.
+  Examples: - "How many orders last month?" - "Total revenue by region" - "Show
+  me customer growth over time"
+</Accordion>
+
+  <Accordion title="Can Genie create visualizations?">
+    Yes! Genie can generate charts when appropriate for your query. Just ask for visual representations in your question.
+  </Accordion>
+</AccordionGroup>
+
+## Connectors & Security
+
+<AccordionGroup>
+  <Accordion title="Is my data secure?">
+    Yes. Your credentials are encrypted at rest and in transit. We don't store your data—only the connection details needed to run queries.
+  </Accordion>
+
+<Accordion title="Can I use read-only access?">
+  Absolutely! We recommend using read-only database users for added security.
+</Accordion>
+
+  <Accordion title="Do you support VPNs or private networks?">
+    Yes. Contact support for IP whitelisting or VPN configuration assistance.
+  </Accordion>
+</AccordionGroup>
+
+## Pipelines & Tasks
+
+<AccordionGroup>
+  <Accordion title="What's the difference between a Task and a Pipeline?">
+    A **Task** is a single SQL query or Python script. A **Pipeline** chains multiple tasks together into an automated workflow.
+  </Accordion>
+
+<Accordion title="How often can pipelines run?">
+  Pipelines can run hourly, daily, weekly, monthly, or on custom cron schedules.
+</Accordion>
+
+  <Accordion title="What happens if a task fails?">
+    The pipeline stops at the failed task and alerts you. You can fix the issue and retry from the failed step.
+  </Accordion>
+</AccordionGroup>
+
+## Billing & Plans
+
+<AccordionGroup>
+  <Accordion title="Is there a free tier?">
+    Yes! We offer a free tier with limited queries and one connector. Upgrade for more capacity.
+  </Accordion>
+
+  <Accordion title="How do I upgrade my plan?">
+    Go to **Settings** → **Billing** → **Upgrade Plan**.
+  </Accordion>
+</AccordionGroup>

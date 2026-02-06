@@ -1,0 +1,79 @@
+---
+title: "Your First Query"
+description: "Ask Genie a question and get insights in minutes"
+icon: "play"
+---
+
+## Overview
+
+In this tutorial, you'll learn how to:
+
+1. Connect your first database
+2. Ask Genie a question
+3. View and understand the results
+
+**Time to complete**: 10 minutes
+
+## Step 1: Add a Connector
+
+First, let's connect to your data source.
+
+<Steps>
+  <Step title="Open Connectors">Click **Connectors** in the sidebar</Step>
+  <Step title="Create New Connection">Click **+ New Connector**</Step>
+  <Step title="Enter Details">
+    For PostgreSQL: - **Host**: your-database-host.com - **Port**: 5432 -
+    **Database**: your_database_name - **Username**: your_username -
+    **Password**: your_password
+  </Step>
+  <Step title="Test & Save">Click **Test Connection**, then **Save**</Step>
+</Steps>
+
+## Step 2: Ask Genie
+
+Now let's ask your first question!
+
+<Steps>
+  <Step title="Go to Home">
+    Click **Home** in the sidebar
+  </Step>
+  <Step title="Type Your Question">
+    Try something like:
+    > "How many records are in the users table?"
+  </Step>
+  <Step title="Press Enter">
+    Genie will generate a query and show you the results
+  </Step>
+</Steps>
+
+## Step 3: Explore Results
+
+Genie's response includes:
+
+- **The Query**: The SQL that Genie wrote for you
+- **Results Table**: The data returned
+- **Insights**: Any patterns Genie noticed
+
+### Try More Questions
+
+| Question Type | Example                                  |
+| ------------- | ---------------------------------------- |
+| **Counting**  | "How many orders were placed last week?" |
+| **Sums**      | "What was total revenue in January?"     |
+| **Grouping**  | "Show orders by status"                  |
+| **Filtering** | "Find customers from California"         |
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card
+    title="Build a Pipeline"
+    icon="diagram-project"
+    href="/tutorials/build-pipeline"
+  >
+    Automate recurring queries
+  </Card>
+  <Card title="Save as Task" icon="floppy-disk" href="/features/tasks">
+    Make queries reusable
+  </Card>
+</CardGroup>

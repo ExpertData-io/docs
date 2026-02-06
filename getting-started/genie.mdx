@@ -1,0 +1,85 @@
+---
+title: "Using Genie"
+description: "Your AI assistant for data analytics"
+icon: "robot"
+---
+
+## What is Genie?
+
+**Genie** is ExpertEngine's AI assistant. Ask questions in plain English, and Genie will:
+
+- Generate SQL queries for you
+- Create visualizations and charts
+- Explain your data patterns
+- Suggest optimizations
+
+<Tip>
+  Genie works best when you have at least one connector set up. [Add your first
+  connector](/getting-started/connectors) to get started.
+</Tip>
+
+## How to Use Genie
+
+### Starting a Conversation
+
+1. Click **Home** in the sidebar to open the Genie chat
+2. Type your question in the prompt box
+3. Press **Enter** or click the send button
+
+### Example Questions
+
+Try asking Genie questions like:
+
+| Type             | Example                                  |
+| ---------------- | ---------------------------------------- |
+| **Counts**       | "How many customers do we have?"         |
+| **Aggregations** | "Total revenue by month this year"       |
+| **Comparisons**  | "Compare sales Q1 vs Q2"                 |
+| **Filters**      | "Show orders over $1000 from California" |
+| **Trends**       | "What's the growth rate of new signups?" |
+
+### Understanding Genie's Response
+
+When Genie answers, you'll see:
+
+1. **The SQL Query** - The generated code Genie wrote
+2. **The Results** - A table showing the data
+3. **Visualizations** - Charts when applicable
+4. **Explanation** - What the data means
+
+### Running the Query
+
+- Click **Run Query** to execute Genie's suggestion
+- Results appear in the data table below
+- You can modify the SQL if needed
+
+## Tips for Better Results
+
+<CardGroup cols={2}>
+  <Card title="Be Specific" icon="bullseye">
+    "Sales by region last quarter" works better than "show me sales"
+  </Card>
+  <Card title="Name Your Tables" icon="table">
+    Mention table names: "from the orders table, show..."
+  </Card>
+  <Card title="Specify Time Ranges" icon="calendar">
+    Include dates: "in the last 30 days" or "for 2024"
+  </Card>
+  <Card title="Ask Follow-ups" icon="comments">
+    "Now break that down by product category"
+  </Card>
+</CardGroup>
+
+## Saving Genie's Work
+
+To save a query Genie generated:
+
+1. Click **Save as Task** to create a reusable task
+2. Give it a name and description
+3. Find it later in the **Tasks** section
+
+## Limitations
+
+- Genie needs an active connector to query data
+- Very complex multi-step analyses may need manual SQL
+- Results are limited to 10,000 rows in preview

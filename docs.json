@@ -21,134 +21,73 @@
     }
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "dark": "/logo/expertengine-dark.svg",
+    "light": "/logo/expertengine-light.svg"
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Get Started",
         "groups": [
+          {
+            "group": "Welcome",
+            "pages": [
+              "index"
+            ]
+          },
           {
             "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "architecture"
-            ]
-          },
-          {
-            "group": "Core Concepts",
-            "pages": [
-              "concepts/connectors",
-              "concepts/tasks",
-              "concepts/pipelines",
-              "concepts/genie"
-            ]
-          },
-          {
-            "group": "Guides",
-            "pages": [
-              "guides/first-connector",
-              "guides/first-pipeline",
-              "guides/using-genie"
+              "getting-started/genie",
+              "getting-started/connectors"
             ]
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Features",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Core Features",
             "pages": [
-              "api/introduction",
-              "api/authentication"
-            ]
-          },
-          {
-            "group": "Resources",
-            "pages": [
-              "api/connectors",
-              "api/tasks",
-              "api/pipelines",
-              "api/executions"
-            ]
-          },
-          {
-            "group": "AI",
-            "pages": [
-              "api/genie"
+              "features/tasks",
+              "features/pipelines",
+              "features/datasets",
+              "features/notebooks"
             ]
           }
         ]
       },
       {
-        "tab": "Deployment",
+        "tab": "Tutorials",
         "groups": [
           {
-            "group": "Deployment",
+            "group": "Step-by-Step Guides",
             "pages": [
-              "deployment/overview",
-              "deployment/docker",
-              "deployment/kubernetes",
-              "deployment/aws"
+              "tutorials/first-query",
+              "tutorials/build-pipeline",
+              "tutorials/automate-reports"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Support",
+        "groups": [
           {
-            "group": "Configuration",
+            "group": "Help",
             "pages": [
-              "deployment/environment",
-              "deployment/security"
+              "support/faq",
+              "support/contact"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "GitHub",
-          "href": "https://github.com/ExpertData-io",
-          "icon": "github"
-        },
-        {
-          "anchor": "API Status",
-          "href": "https://status.expertengine.io",
-          "icon": "signal"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/expertengine-light.svg",
-    "dark": "/logo/expertengine-dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:support@expertdata.io"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Launch App",
-      "href": "https://app.expertengine.io"
-    }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "cursor"
     ]
   },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/ExpertData-io",
-      "linkedin": "https://linkedin.com/company/expertdata"
-    }
-  },
-  "rounded": "lg",
-  "backgroundImage": "/images/nebula-bg.png"
+  "footerSocials": {
+    "website": "https://expertdata.io",
+    "linkedin": "https://linkedin.com/company/expertdata"
+  }
 }

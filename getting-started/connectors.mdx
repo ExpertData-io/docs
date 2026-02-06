@@ -1,0 +1,100 @@
+---
+title: "Connecting Your Data"
+description: "Set up secure connections to your databases"
+icon: "plug"
+---
+
+## What are Connectors?
+
+**Connectors** are secure connections to your data sources. Once connected, you can:
+
+- Query your data with SQL
+- Use Genie to ask questions
+- Build automated pipelines
+- Create and save datasets
+
+## Supported Data Sources
+
+<CardGroup cols={3}>
+  <Card title="PostgreSQL" icon="database">
+    Most popular choice
+  </Card>
+  <Card title="MySQL" icon="database">
+    Full support
+  </Card>
+  <Card title="BigQuery" icon="google">
+    Google Cloud
+  </Card>
+  <Card title="Snowflake" icon="snowflake">
+    Data warehouse
+  </Card>
+  <Card title="Redshift" icon="aws">
+    AWS analytics
+  </Card>
+  <Card title="SQLite" icon="file">
+    Local files
+  </Card>
+</CardGroup>
+
+## Creating a Connector
+
+<Steps>
+  <Step title="Go to Connectors">
+    Click **Connectors** in the sidebar, then click **+ New Connector**
+  </Step>
+  <Step title="Choose Your Database Type">
+    Select PostgreSQL, MySQL, BigQuery, or another supported type
+  </Step>
+  <Step title="Enter Connection Details">
+    Fill in your database credentials: - **Host**: Your database server address
+    - **Port**: Usually 5432 (PostgreSQL) or 3306 (MySQL) - **Database**: The
+    database name - **Username**: Your database user - **Password**: Your
+    database password
+  </Step>
+  <Step title="Test Connection">
+    Click **Test Connection** to verify it works
+  </Step>
+  <Step title="Save">Give your connector a name and click **Save**</Step>
+</Steps>
+
+## Connection Security
+
+<Info>
+  Your credentials are encrypted at rest and in transit. We never store your
+  data—only the connection details needed to query it.
+</Info>
+
+### Best Practices
+
+- **Use read-only users** when possible
+- **Whitelist our IPs** if your database requires it
+- **Rotate credentials** periodically
+
+## Managing Connectors
+
+### Edit a Connector
+
+1. Go to **Connectors**
+2. Click on the connector you want to edit
+3. Update the details
+4. Click **Save**
+
+### Delete a Connector
+
+1. Go to **Connectors**
+2. Click the three-dot menu on the connector
+3. Select **Delete**
+4. Confirm deletion
+
+<Warning>
+  Deleting a connector will break any tasks or pipelines that use it.
+</Warning>
+
+## Troubleshooting
+
+| Issue                 | Solution                                |
+| --------------------- | --------------------------------------- |
+| Connection refused    | Check host/port, verify firewall rules  |
+| Authentication failed | Verify username/password                |
+| Database not found    | Check database name spelling            |
+| Timeout               | Ensure IP is whitelisted, check network |

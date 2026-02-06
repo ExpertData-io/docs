@@ -1,0 +1,124 @@
+---
+title: "Working with Tasks"
+description: "Create reusable data transformations"
+icon: "gear"
+---
+
+## What are Tasks?
+
+**Tasks** are saved SQL queries or Python scripts that you can run on demand or schedule. Use them to:
+
+- Save queries you run frequently
+- Transform data before analysis
+- Create reusable building blocks for pipelines
+
+## Creating a Task
+
+<Steps>
+  <Step title="Go to Tasks">
+    Click **Tasks** in the sidebar, then click **+ New Task**
+  </Step>
+  <Step title="Choose Task Type">
+    Select **SQL** or **Python** depending on your needs
+  </Step>
+  <Step title="Select a Connector">
+    Choose which database to run the query against
+  </Step>
+  <Step title="Write Your Query">
+    Enter your SQL query or Python code in the editor
+  </Step>
+  <Step title="Test It">Click **Run** to preview the results</Step>
+  <Step title="Save">
+    Give your task a name and description, then click **Save**
+  </Step>
+</Steps>
+
+## SQL Tasks
+
+SQL tasks run queries against your connected databases.
+
+### Example: Monthly Sales Summary
+
+```sql
+SELECT
+    DATE_TRUNC('month', order_date) AS month,
+    SUM(total_amount) AS revenue,
+    COUNT(*) AS order_count
+FROM orders
+WHERE order_date >= DATE_TRUNC('year', CURRENT_DATE)
+GROUP BY 1
+ORDER BY 1;
+```
+
+### Using Parameters
+
+Make your tasks dynamic with parameters:
+
+```sql
+SELECT * FROM orders
+WHERE order_date >= :start_date
+  AND order_date <= :end_date
+  AND region = :region
+```
+
+When running the task, you'll be prompted to enter values for `start_date`, `end_date`, and `region`.
+
+## Python Tasks
+
+Python tasks let you run Python scripts for advanced transformations.
+
+### Example: Data Cleaning
+
+```python
+import pandas as pd
+
+# Input data comes from the previous step
+df = input_data
+
+# Clean and transform
+df['email'] = df['email'].str.lower().str.strip()
+df['created_at'] = pd.to_datetime(df['created_at'])
+df = df.dropna(subset=['email'])
+
+# Output for next step
+output_data = df
+```
+
+## Running Tasks
+
+### Run Manually
+
+1. Open the task
+2. Enter any required parameters
+3. Click **Run**
+4. View results in the preview pane
+
+### Run via Pipeline
+
+Tasks can be chained together in pipelines for automated execution.
+
+## Task Status
+
+| Status         | Meaning                       |
+| -------------- | ----------------------------- |
+| 🟢 **Success** | Task completed without errors |
+| 🔴 **Failed**  | Task encountered an error     |
+| 🟡 **Running** | Task is currently executing   |
+| ⚪ **Pending** | Task is queued to run         |
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Use Descriptive Names" icon="tag">
+    "monthly_revenue_by_region" not "query_1"
+  </Card>
+  <Card title="Add Comments" icon="comment">
+    Explain what the query does and why
+  </Card>
+  <Card title="Test Before Saving" icon="flask">
+    Always run and verify results first
+  </Card>
+  <Card title="Use Parameters" icon="sliders">
+    Make tasks flexible and reusable
+  </Card>
+</CardGroup>

@@ -1,6 +1,6 @@
 ---
 title: "Welcome to ExpertEngine"
-description: "AI-powered data analytics platform with intelligent agents, connectors, and pipelines"
+description: "Your AI-powered data analytics platform"
 ---
 
 <img
@@ -11,81 +11,70 @@ description: "AI-powered data analytics platform with intelligent agents, connec
 
 ## What is ExpertEngine?
 
-ExpertEngine is an **enterprise-grade data analytics platform** that combines the power of AI with modular data workflows. Connect to any data source, build reusable transformations, and let Genie—your AI assistant—do the heavy lifting.
+ExpertEngine is an **AI-powered data analytics platform** that helps you connect to your data sources, run queries, build pipelines, and get instant insights using natural language.
 
 <CardGroup cols={2}>
-  <Card title="Quick Start" icon="rocket" href="/quickstart">
-    Get up and running in 5 minutes
+  <Card title="Talk to Genie" icon="robot" href="/getting-started/genie">
+    Ask questions in plain English and get SQL queries, charts, and insights
+    instantly.
   </Card>
-  <Card title="Architecture" icon="diagram-project" href="/architecture">
-    Understand how ExpertEngine works
+  <Card
+    title="Connect Your Data"
+    icon="plug"
+    href="/getting-started/connectors"
+  >
+    Set up secure connections to your databases in minutes.
   </Card>
-  <Card title="API Reference" icon="code" href="/api/introduction">
-    Explore the REST API
+  <Card
+    title="Build Pipelines"
+    icon="diagram-project"
+    href="/features/pipelines"
+  >
+    Automate data workflows with visual pipeline builder.
   </Card>
-  <Card title="Deployment" icon="cloud" href="/deployment/overview">
-    Deploy to production
-  </Card>
-</CardGroup>
-
-## Core Features
-
-<CardGroup cols={3}>
-  <Card title="🔌 Connectors" href="/concepts/connectors">
-    Connect to databases, APIs, cloud warehouses, and files with encrypted
-    credentials
-  </Card>
-  <Card title="⚙️ Tasks" href="/concepts/tasks">
-    Build reusable data transformations with SQL and Python
-  </Card>
-  <Card title="🔄 Pipelines" href="/concepts/pipelines">
-    Chain tasks into end-to-end workflows with orchestration
-  </Card>
-  <Card title="🤖 Genie AI" href="/concepts/genie">
-    Natural language interface to your data—just ask!
-  </Card>
-  <Card title="📊 Notebooks" href="/concepts/notebooks">
-    Interactive Jupyter-style data exploration
-  </Card>
-  <Card title="📈 ML Training" href="/concepts/mlflow">
-    MLflow-integrated experiment tracking and model training
+  <Card title="Explore Data" icon="table" href="/features/datasets">
+    Browse, preview, and analyze your datasets.
   </Card>
 </CardGroup>
-
-## Why ExpertEngine?
-
-<Columns cols={2}>
-  <div>
-    ### For Data Teams - **No-code connectors** to 20+ data sources - **Reusable
-    tasks** that anyone can run - **Visual pipelines** with dependency
-    management - **Genie AI** for natural language queries
-  </div>
-  <div>
-    ### For Developers - **FastAPI backend** with OpenAPI docs - **React
-    frontend** with modern design - **Metaflow orchestration** for scalable
-    pipelines - **Kubernetes-ready** with Terraform modules
-  </div>
-</Columns>
 
 ## Getting Started
 
+New to ExpertEngine? Follow these steps to get up and running:
+
 <Steps>
-  <Step title="Install">
-    Clone the repository and start with Docker Compose ```bash git clone
-    https://github.com/ExpertData-io/expertdata-backend.git cd
-    expertengine-infra/local && make up ```
+  <Step title="Create Your Account">
+    Sign up at [app.expertengine.tech](https://app.expertengine.tech/signup) and
+    verify your email.
   </Step>
-  <Step title="Connect">
-    Create your first data connector ``` Navigate to Dashboard → Connectors →
-    New ```
+  <Step title="Add Your First Connector">
+    Connect to your database (PostgreSQL, MySQL, BigQuery, and more).
   </Step>
-  <Step title="Ask Genie">
-    Open Genie and ask a question ``` "Show me the top 10 customers by revenue"
-    ```
+  <Step title="Start Asking Questions">
+    Open Genie and ask questions like "Show me sales by region last month"
   </Step>
 </Steps>
 
-<Card title="Not sure where to start?" icon="message-bot" href="/quickstart">
-  Follow our step-by-step quickstart guide to create your first analysis in
-  under 10 minutes.
-</Card>
+## Key Features
+
+| Feature        | Description                                   |
+| -------------- | --------------------------------------------- |
+| **Genie AI**   | Natural language interface for data analytics |
+| **Connectors** | Secure connections to 10+ data sources        |
+| **Tasks**      | Reusable SQL and Python transformations       |
+| **Pipelines**  | Automated, scheduled data workflows           |
+| **Datasets**   | Queryable data snapshots and previews         |
+| **Notebooks**  | Interactive SQL and Python exploration        |
+
+## Need Help?
+
+<CardGroup cols={3}>
+  <Card title="Tutorials" icon="graduation-cap" href="/tutorials/first-query">
+    Step-by-step guides
+  </Card>
+  <Card title="FAQ" icon="circle-question" href="/support/faq">
+    Common questions
+  </Card>
+  <Card title="Contact Us" icon="envelope" href="/support/contact">
+    Get in touch
+  </Card>
+</CardGroup>

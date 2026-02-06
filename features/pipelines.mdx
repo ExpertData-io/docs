@@ -1,0 +1,128 @@
+---
+title: "Building Pipelines"
+description: "Automate your data workflows"
+icon: "diagram-project"
+---
+
+## What are Pipelines?
+
+**Pipelines** chain multiple tasks together into automated workflows. Use them to:
+
+- Run tasks in sequence
+- Schedule recurring data jobs
+- Handle errors and retries
+- Build end-to-end data processes
+
+## Creating a Pipeline
+
+<Steps>
+  <Step title="Go to Pipelines">
+    Click **Pipelines** in the sidebar, then click **+ New Pipeline**
+  </Step>
+  <Step title="Name Your Pipeline">
+    Give it a descriptive name like "Daily Sales ETL"
+  </Step>
+  <Step title="Add Tasks">Drag tasks from the left panel onto the canvas</Step>
+  <Step title="Connect Tasks">
+    Draw lines between tasks to define the execution order
+  </Step>
+  <Step title="Configure Schedule (Optional)">
+    Set up when the pipeline should run automatically
+  </Step>
+  <Step title="Save">Click **Save** to save your pipeline</Step>
+</Steps>
+
+## The Pipeline Canvas
+
+The visual canvas lets you design your workflow:
+
+- **Tasks** appear as boxes
+- **Arrows** show data flow direction
+- **Colors** indicate task status when running
+
+### Adding Tasks
+
+1. Click **+ Add Task** or drag from the task list
+2. Select an existing task or create a new one
+3. Position it on the canvas
+
+### Connecting Tasks
+
+1. Hover over a task's right edge
+2. Drag to create a connection
+3. Drop on another task's left edge
+
+## Scheduling Pipelines
+
+Run pipelines automatically on a schedule:
+
+| Schedule          | Example                          |
+| ----------------- | -------------------------------- |
+| **Hourly**        | Every hour at :00                |
+| **Daily**         | Every day at 6:00 AM             |
+| **Weekly**        | Every Monday at 9:00 AM          |
+| **Monthly**       | 1st of each month                |
+| **Custom (Cron)** | `0 6 * * 1-5` (weekdays at 6 AM) |
+
+### Setting a Schedule
+
+1. Open your pipeline
+2. Click **Schedule** tab
+3. Choose frequency
+4. Set the time
+5. Save
+
+## Running Pipelines
+
+### Manual Run
+
+1. Open the pipeline
+2. Click **Run Now**
+3. Monitor progress on the canvas
+
+### Viewing Run History
+
+1. Go to the pipeline
+2. Click **Runs** tab
+3. See all past executions with status
+
+## Error Handling
+
+When a task fails:
+
+1. The pipeline stops at that task
+2. You see an error message
+3. Fix the issue
+4. Click **Retry** to continue from the failed task
+
+<Warning>Tasks after a failed task won't run until you fix and retry.</Warning>
+
+## Example Pipeline
+
+**Daily Customer Report**
+
+```
+[Fetch Orders] → [Calculate Metrics] → [Generate Report] → [Send Email]
+```
+
+1. **Fetch Orders**: SQL query to get today's orders
+2. **Calculate Metrics**: Python script to compute KPIs
+3. **Generate Report**: Format data as HTML report
+4. **Send Email**: Deliver to stakeholders
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Start Simple" icon="seedling">
+    Build with 2-3 tasks, then expand
+  </Card>
+  <Card title="Test Each Task" icon="flask">
+    Verify tasks work individually first
+  </Card>
+  <Card title="Add Descriptions" icon="file-lines">
+    Document what the pipeline does
+  </Card>
+  <Card title="Monitor Runs" icon="chart-line">
+    Check run history for failures
+  </Card>
+</CardGroup>

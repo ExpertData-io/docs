@@ -1,0 +1,142 @@
+---
+title: "Using Notebooks"
+description: "Interactive SQL and Python exploration"
+icon: "book"
+---
+
+## What are Notebooks?
+
+**Notebooks** are interactive workspaces for exploring data. Like Jupyter notebooks, they let you:
+
+- Run SQL and Python code in cells
+- Mix queries with markdown notes
+- Visualize results inline
+- Save and share your analysis
+
+## Creating a Notebook
+
+<Steps>
+  <Step title="Go to Notebooks">Click **Notebooks** in the sidebar</Step>
+  <Step title="Create New">Click **+ New Notebook**</Step>
+  <Step title="Name Your Notebook">
+    Give it a meaningful title like "Q1 Sales Analysis"
+  </Step>
+</Steps>
+
+## Working with Cells
+
+Notebooks contain **cells** that hold your code or text:
+
+### Types of Cells
+
+| Type         | Use For                      |
+| ------------ | ---------------------------- |
+| **SQL**      | Running database queries     |
+| **Python**   | Data processing and analysis |
+| **Markdown** | Notes, headers, explanations |
+
+### Adding Cells
+
+1. Click between cells or at the bottom
+2. Click **+ Add Cell**
+3. Choose the cell type
+
+### Running Cells
+
+- Click the **▶ Run** button on a cell
+- Or press **Shift + Enter** to run and move to next
+- Or press **Ctrl + Enter** to run and stay
+
+## SQL Cells
+
+Write SQL queries against your connected databases:
+
+```sql
+-- Select a connector first
+SELECT
+    product_name,
+    SUM(quantity) as total_sold
+FROM orders
+GROUP BY product_name
+ORDER BY total_sold DESC
+LIMIT 10;
+```
+
+Results appear as a table below the cell.
+
+## Python Cells
+
+Use Python for advanced analysis:
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Previous cell results are available as 'df'
+df = _  # Last cell output
+
+# Create visualization
+plt.figure(figsize=(10, 6))
+plt.bar(df['product_name'], df['total_sold'])
+plt.title('Top 10 Products')
+plt.xticks(rotation=45)
+plt.show()
+```
+
+## Markdown Cells
+
+Add documentation with Markdown:
+
+```markdown
+# Q1 Sales Analysis
+
+## Summary
+
+This notebook analyzes sales performance for Q1 2024.
+
+### Key Findings
+
+- Revenue increased 15% vs Q4
+- Top category: Electronics
+```
+
+## Sharing Notebooks
+
+1. Click **Share** in the top right
+2. Choose team members or copy a link
+3. Set permissions (view/edit)
+
+## Saving Work
+
+- Notebooks auto-save as you work
+- Click **Save** to save manually
+- Use **Version History** to restore previous versions
+
+## Keyboard Shortcuts
+
+| Shortcut        | Action                              |
+| --------------- | ----------------------------------- |
+| `Shift + Enter` | Run cell, move to next              |
+| `Ctrl + Enter`  | Run cell, stay in place             |
+| `Esc`           | Exit edit mode                      |
+| `Enter`         | Enter edit mode                     |
+| `A`             | Insert cell above (in command mode) |
+| `B`             | Insert cell below (in command mode) |
+| `DD`            | Delete cell (in command mode)       |
+
+## Tips
+
+<CardGroup cols={2}>
+  <Card title="Start with SQL" icon="database">
+    Fetch data first, then process with Python
+  </Card>
+  <Card title="Use Markdown Liberally" icon="file-lines">
+    Document your thought process
+  </Card>
+  <Card title="Name Variables Clearly" icon="tag">
+    Makes sharing easier for teammates
+  </Card>
+  <Card title="Break Into Small Cells" icon="cubes">
+    Easier to debug and re-run sections
+  </Card>
+</CardGroup>

@@ -1,0 +1,120 @@
+---
+title: "Automate Reports"
+description: "Set up recurring reports that run automatically"
+icon: "envelope"
+---
+
+## Overview
+
+Learn how to:
+
+1. Create a reporting pipeline
+2. Schedule it to run automatically
+3. Monitor execution
+
+**Time to complete**: 20 minutes
+
+## The Goal
+
+We'll build a system that:
+
+- Runs every Monday morning
+- Calculates weekly KPIs
+- Saves results as a dataset
+
+## Step 1: Create Report Tasks
+
+### Weekly Sales Task
+
+Create a task with this query:
+
+```sql
+SELECT
+    DATE_TRUNC('week', order_date) AS week,
+    COUNT(*) AS orders,
+    SUM(amount) AS revenue,
+    COUNT(DISTINCT customer_id) AS unique_customers
+FROM orders
+WHERE order_date >= CURRENT_DATE - INTERVAL '7 days'
+GROUP BY 1;
+```
+
+Name it "Weekly Sales Summary".
+
+### Top Products Task
+
+Create another task:
+
+```sql
+SELECT
+    product_name,
+    SUM(quantity) AS units_sold,
+    SUM(price * quantity) AS revenue
+FROM order_items oi
+JOIN products p ON oi.product_id = p.id
+WHERE oi.created_at >= CURRENT_DATE - INTERVAL '7 days'
+GROUP BY 1
+ORDER BY revenue DESC
+LIMIT 10;
+```
+
+Name it "Weekly Top Products".
+
+## Step 2: Build the Pipeline
+
+1. Go to **Pipelines** → **+ New Pipeline**
+2. Name it "Weekly Report"
+3. Add both tasks to the canvas
+4. They can run in parallel (no connection needed) or sequentially
+
+## Step 3: Schedule for Monday
+
+1. Open the **Schedule** tab
+2. Enable scheduling
+3. Select **Weekly** on **Monday** at **8:00 AM**
+4. Save
+
+## Step 4: Monitor Results
+
+After the pipeline runs:
+
+1. Go to **Pipelines**
+2. Click on "Weekly Report"
+3. Open the **Runs** tab
+4. Check the status of each run
+
+### Status Meanings
+
+| Status         | Meaning                      |
+| -------------- | ---------------------------- |
+| ✅ **Success** | All tasks completed          |
+| ❌ **Failed**  | One or more tasks had errors |
+| 🔄 **Running** | Currently executing          |
+
+## Troubleshooting
+
+**Pipeline didn't run?**
+
+- Check the schedule is enabled
+- Verify the timezone is correct
+
+**Task failed?**
+
+- Click on the failed task
+- View the error message
+- Fix and retry
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card title="Save as Dataset" icon="table" href="/features/datasets">
+    Keep report results for later
+  </Card>
+  <Card
+    title="Advanced Pipelines"
+    icon="diagram-project"
+    href="/features/pipelines"
+  >
+    Add error handling
+  </Card>
+</CardGroup>

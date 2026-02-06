@@ -1,0 +1,108 @@
+---
+title: "Working with Datasets"
+description: "Save and explore data snapshots"
+icon: "table"
+---
+
+## What are Datasets?
+
+**Datasets** are saved snapshots of query results. Use them to:
+
+- Save query results for later analysis
+- Share data with team members
+- Create reference data for joins
+- Preview data without running queries each time
+
+## Creating a Dataset
+
+### From a Task
+
+1. Run a task
+2. Click **Save as Dataset**
+3. Name your dataset
+4. Click **Save**
+
+### From Genie
+
+1. Ask Genie a question
+2. When results appear, click **Save as Dataset**
+3. Name it and save
+
+### From the Query Editor
+
+1. Go to **Queries** in the sidebar
+2. Write and run your query
+3. Click **Save as Dataset**
+
+## Viewing Datasets
+
+1. Click **Datasets** in the sidebar
+2. Browse your saved datasets
+3. Click any dataset to preview its data
+
+### Dataset Preview
+
+The preview shows:
+
+- **Columns**: All available fields
+- **Sample Data**: First rows of the dataset
+- **Row Count**: Total number of records
+- **Created/Updated**: When the dataset was saved
+
+## Refreshing Datasets
+
+Datasets are snapshots—they don't update automatically. To refresh:
+
+1. Open the dataset
+2. Click **Refresh**
+3. The query re-runs and updates the data
+
+<Tip>
+  Need automatic updates? Create a pipeline that refreshes the dataset on a
+  schedule.
+</Tip>
+
+## Using Datasets
+
+### In Tasks
+
+Reference datasets in SQL:
+
+```sql
+SELECT c.name, o.total
+FROM customers c
+JOIN my_saved_dataset o ON c.id = o.customer_id
+```
+
+### In Genie
+
+Tell Genie to use your dataset:
+
+> "Using the monthly_sales dataset, show me the top 10 products"
+
+## Managing Datasets
+
+### Rename a Dataset
+
+1. Open the dataset
+2. Click the name to edit
+3. Save changes
+
+### Delete a Dataset
+
+1. Go to **Datasets**
+2. Click the three-dot menu
+3. Select **Delete**
+
+<Warning>
+  Deleting a dataset cannot be undone. Tasks that reference it will fail.
+</Warning>
+
+## Best Practices
+
+| Do                          | Don't                           |
+| --------------------------- | ------------------------------- |
+| Use descriptive names       | Use generic names like "data_1" |
+| Add descriptions            | Leave datasets undocumented     |
+| Refresh regularly if needed | Rely on stale data              |
+| Delete unused datasets      | Let them accumulate             |

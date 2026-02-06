@@ -1,0 +1,116 @@
+---
+title: "Build Your First Pipeline"
+description: "Automate a data workflow from scratch"
+icon: "diagram-project"
+---
+
+## Overview
+
+In this tutorial, you'll create a pipeline that:
+
+1. Fetches data from your database
+2. Transforms it with SQL
+3. Runs on a schedule
+
+**Time to complete**: 15 minutes
+
+## Prerequisites
+
+- At least one [connector](/getting-started/connectors) set up
+- One or more [tasks](/features/tasks) created
+
+## Step 1: Create Tasks
+
+First, let's create the tasks our pipeline will use.
+
+### Task 1: Fetch Daily Orders
+
+<Steps>
+  <Step title="Go to Tasks">
+    Click **Tasks** → **+ New Task**
+  </Step>
+  <Step title="Write the Query">
+    ```sql
+    SELECT 
+        order_id,
+        customer_id,
+        total_amount,
+        created_at
+    FROM orders
+    WHERE created_at >= CURRENT_DATE - INTERVAL '1 day'
+    ```
+  </Step>
+  <Step title="Save">
+    Name it "Fetch Daily Orders" and save
+  </Step>
+</Steps>
+
+### Task 2: Calculate Summary
+
+<Steps>
+  <Step title="Create Another Task">
+    Click **Tasks** → **+ New Task**
+  </Step>
+  <Step title="Write the Summary">
+    ```sql
+    SELECT 
+        COUNT(*) AS order_count,
+        SUM(total_amount) AS total_revenue,
+        AVG(total_amount) AS avg_order_value
+    FROM orders
+    WHERE created_at >= CURRENT_DATE - INTERVAL '1 day'
+    ```
+  </Step>
+  <Step title="Save">
+    Name it "Daily Summary" and save
+  </Step>
+</Steps>
+
+## Step 2: Create the Pipeline
+
+<Steps>
+  <Step title="Go to Pipelines">Click **Pipelines** → **+ New Pipeline**</Step>
+  <Step title="Name It">Call it "Daily Orders Report"</Step>
+  <Step title="Add First Task">Drag "Fetch Daily Orders" onto the canvas</Step>
+  <Step title="Add Second Task">Drag "Daily Summary" onto the canvas</Step>
+  <Step title="Connect Them">
+    Draw a line from the first task to the second
+  </Step>
+  <Step title="Save">Click **Save**</Step>
+</Steps>
+
+## Step 3: Test Your Pipeline
+
+1. Click **Run Now**
+2. Watch the tasks execute in sequence
+3. Verify both complete successfully (green status)
+
+## Step 4: Schedule It
+
+<Steps>
+  <Step title="Open Schedule Tab">Click the **Schedule** tab</Step>
+  <Step title="Enable Scheduling">Toggle on "Run on schedule"</Step>
+  <Step title="Set Frequency">Choose "Daily" at 6:00 AM</Step>
+  <Step title="Save">Click **Save**</Step>
+</Steps>
+
+Your pipeline will now run every morning at 6 AM!
+
+## What's Next?
+
+<CardGroup cols={2}>
+  <Card
+    title="Automate Reports"
+    icon="envelope"
+    href="/tutorials/automate-reports"
+  >
+    Send results via email
+  </Card>
+  <Card
+    title="Pipeline Best Practices"
+    icon="lightbulb"
+    href="/features/pipelines"
+  >
+    Learn advanced techniques
+  </Card>
+</CardGroup>
