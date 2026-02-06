@@ -1,0 +1,89 @@
+---
+title: "Your First Pipeline"
+description: "Chain tasks into an automated workflow"
+icon: "diagram-project"
+---
+
+## Overview
+
+In this guide, you'll build a pipeline that runs multiple tasks in sequence.
+
+<Note>**Time required:** 10 minutes</Note>
+
+## Prerequisites
+
+- A connector set up (see [First Connector](/guides/first-connector))
+- At least 2 tasks created
+
+## Step 1: Create Your Tasks
+
+First, create the tasks you want to chain:
+
+### Task 1: Extract Data
+
+1. Go to **Tasks** → **+ New Task**
+2. Name: "Extract Orders"
+3. Type: SQL
+4. SQL: `SELECT * FROM orders WHERE date = CURRENT_DATE`
+5. Save
+
+### Task 2: Summarize
+
+1. Create another task
+2. Name: "Summarize Orders"
+3. Type: Python
+4. Code:
+
+```python
+import pandas as pd
+
+df = pd.read_parquet('input.parquet')
+summary = df.groupby('category').agg({'amount': 'sum'})
+summary.to_parquet('output.parquet')
+```
+
+5. Save
+
+## Step 2: Create the Pipeline
+
+1. Go to **Pipelines** → **+ New Pipeline**
+2. Name: "Daily Order Summary"
+
+## Step 3: Add Tasks
+
+1. Drag "Extract Orders" to the canvas
+2. Drag "Summarize Orders" to the canvas
+3. Draw a connection from Extract to Summarize
+
+## Step 4: Run the Pipeline
+
+Click **Run Pipeline** to execute.
+
+Watch the real-time status as each task completes.
+
+## Step 5: Schedule (Optional)
+
+To run daily:
+
+1. Click **Settings** on your pipeline
+2. Set schedule: `0 6 * * *` (6 AM daily)
+3. Save
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Monitor Executions"
+    icon="list-check"
+    href="/concepts/pipelines#monitoring"
+  >
+    Track pipeline runs
+  </Card>
+  <Card
+    title="Add Error Handling"
+    icon="shield"
+    href="/concepts/pipelines#error-handling"
+  >
+    Configure retries
+  </Card>
+</CardGroup>

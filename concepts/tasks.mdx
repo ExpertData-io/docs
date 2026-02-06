@@ -1,0 +1,142 @@
+---
+title: "Tasks"
+description: "Build reusable data transformations with SQL and Python"
+icon: "gear"
+---
+
+## What are Tasks?
+
+**Tasks** are reusable data transformation operations. They encapsulate a single unit of work—like a SQL query or Python script—that can be executed on demand or as part of a pipeline.
+
+## Task Types
+
+<CardGroup cols={2}>
+  <Card title="SQL Tasks" icon="database">
+    Execute SQL queries against connected databases
+  </Card>
+  <Card title="Python Tasks" icon="python">
+    Run Python code for data processing and visualization
+  </Card>
+  <Card title="Data Fetching" icon="download">
+    Import data from APIs and external files
+  </Card>
+  <Card title="ML Tasks" icon="brain">
+    Train and evaluate machine learning models
+  </Card>
+</CardGroup>
+
+## Creating a Task
+
+<Steps>
+  <Step title="Navigate to Tasks">Go to **Dashboard** → **Tasks**</Step>
+  <Step title="Click New Task">Click the **+ New Task** button</Step>
+  <Step title="Select Type">Choose your task type (SQL, Python, etc.)</Step>
+  <Step title="Configure">
+    - **Name**: Descriptive task name - **Connector**: Data source to use -
+    **Code**: SQL query or Python script - **Parameters**: Optional input
+    parameters
+  </Step>
+  <Step title="Test">Click **Run** to test execution</Step>
+  <Step title="Save">Click **Save** to create the task</Step>
+</Steps>
+
+## SQL Task Example
+
+```sql
+-- Daily Revenue Summary
+SELECT
+    DATE(created_at) as date,
+    COUNT(*) as order_count,
+    SUM(total_amount) as revenue,
+    AVG(total_amount) as avg_order_value
+FROM orders
+WHERE created_at >= CURRENT_DATE - INTERVAL '30 days'
+GROUP BY DATE(created_at)
+ORDER BY date DESC
+```
+
+## Python Task Example
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load data from previous task
+df = pd.read_parquet('input.parquet')
+
+# Process
+summary = df.groupby('category').agg({
+    'revenue': 'sum',
+    'orders': 'count'
+}).reset_index()
+
+# Visualize
+fig, ax = plt.subplots(figsize=(10, 6))
+summary.plot(kind='bar', x='category', y='revenue', ax=ax)
+plt.title('Revenue by Category')
+plt.savefig('output.png')
+```
+
+## Task Parameters
+
+Tasks can accept input parameters for dynamic execution:
+
+```json
+{
+  "task_name": "Customer Report",
+  "parameters": {
+    "start_date": {
+      "type": "date",
+      "default": "2024-01-01",
+      "description": "Report start date"
+    },
+    "customer_segment": {
+      "type": "string",
+      "enum": ["enterprise", "smb", "consumer"],
+      "description": "Customer segment to analyze"
+    }
+  }
+}
+```
+
+Use parameters in SQL:
+
+```sql
+SELECT * FROM customers
+WHERE created_at >= :start_date
+  AND segment = :customer_segment
+```
+
+## Task Outputs
+
+Tasks produce artifacts that can be consumed by other tasks or visualized:
+
+| Output Type | Description                   |
+| ----------- | ----------------------------- |
+| **Parquet** | Structured data for analysis  |
+| **CSV**     | Spreadsheet-compatible format |
+| **PNG/SVG** | Charts and visualizations     |
+| **JSON**    | Structured results            |
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Keep tasks focused">
+    Each task should do one thing well. Compose complex workflows using
+    pipelines.
+  </Accordion>
+  <Accordion title="Use parameters">
+    Make tasks reusable by parameterizing inputs like dates, filters, and
+    thresholds.
+  </Accordion>
+  <Accordion title="Document outputs">
+    Clearly describe what each task produces so others can reuse it.
+  </Accordion>
+  <Accordion title="Test before saving">
+    Always run a task to verify it works before saving.
+  </Accordion>
+</AccordionGroup>
+
+## API Reference
+
+See [Tasks API](/api/tasks) for full endpoint documentation.

@@ -1,0 +1,145 @@
+---
+title: "Genie API"
+description: "Programmatic access to the Genie AI assistant"
+icon: "robot"
+---
+
+## Ask Genie
+
+<ParamField path="POST" query="/genie/ask">
+  Send a message to Genie and receive an AI-powered response.
+</ParamField>
+
+**Request Body:**
+
+```json
+{
+  "message": "Show me the top 10 customers by revenue",
+  "conversation_id": "conv123",
+  "connector_uuid": "abc123"
+}
+```
+
+| Parameter         | Type   | Required | Description                    |
+| ----------------- | ------ | -------- | ------------------------------ |
+| `message`         | string | ✅       | Your question or command       |
+| `conversation_id` | string | ❌       | Continue existing conversation |
+| `connector_uuid`  | string | ❌       | Target database connector      |
+
+**Response:**
+
+```json
+{
+  "conversation_id": "conv123",
+  "message_id": "msg456",
+  "response": {
+    "text": "Here are the top 10 customers by revenue:",
+    "artifacts": [
+      {
+        "type": "table",
+        "data": [...],
+        "row_count": 10
+      }
+    ],
+    "sql": "SELECT customer_name, SUM(amount) as revenue FROM orders GROUP BY customer_name ORDER BY revenue DESC LIMIT 10"
+  }
+}
+```
+
+---
+
+## Execute via Genie
+
+<ParamField path="POST" query="/genie/execute">
+  Execute a specific task or query through Genie.
+</ParamField>
+
+**Request Body:**
+
+```json
+{
+  "action": "execute_sql",
+  "sql": "SELECT COUNT(*) FROM users",
+  "connector_uuid": "abc123"
+}
+```
+
+---
+
+## Get Conversation
+
+<ParamField path="GET" query="/genie/conversations/{conversation_id}">
+  Retrieves the full conversation history.
+</ParamField>
+
+**Response:**
+
+```json
+{
+  "conversation_id": "conv123",
+  "created_at": "2024-01-15T10:00:00Z",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Show me the top 10 customers",
+      "timestamp": "2024-01-15T10:00:00Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Here are the top 10 customers...",
+      "artifacts": [...],
+      "timestamp": "2024-01-15T10:00:05Z"
+    }
+  ]
+}
+```
+
+---
+
+## List Conversations
+
+<ParamField path="GET" query="/genie/conversations">
+  Lists all conversations for the authenticated user.
+</ParamField>
+
+---
+
+## Delete Conversation
+
+<ParamField path="DELETE" query="/genie/conversations/{conversation_id}">
+  Deletes a conversation and its history.
+</ParamField>
+
+---
+
+## WebSocket Connection
+
+For real-time streaming responses, connect via WebSocket:
+
+```javascript
+const ws = new WebSocket("wss://api.expertengine.io/genie/ws");
+
+ws.onopen = () => {
+  ws.send(
+    JSON.stringify({
+      type: "ask",
+      message: "Analyze last month sales",
+      conversation_id: "conv123",
+    }),
+  );
+};
+
+ws.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  if (data.type === "chunk") {
+    // Streaming text response
+    console.log(data.text);
+  } else if (data.type === "artifact") {
+    // Completed artifact
+    console.log(data.artifact);
+  } else if (data.type === "complete") {
+    // Response complete
+    console.log("Done");
+  }
+};
+```

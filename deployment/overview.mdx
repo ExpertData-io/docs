@@ -1,0 +1,67 @@
+---
+title: "Deployment Overview"
+description: "Deploy ExpertEngine to production"
+icon: "cloud"
+---
+
+## Deployment Options
+
+<CardGroup cols={2}>
+  <Card title="Docker Compose" icon="docker" href="/deployment/docker">
+    Simple deployment for small teams
+  </Card>
+  <Card title="Kubernetes" icon="dharmachakra" href="/deployment/kubernetes">
+    Scalable deployment for production
+  </Card>
+  <Card title="AWS" icon="aws" href="/deployment/aws">
+    Cloud-native on Amazon Web Services
+  </Card>
+</CardGroup>
+
+## Architecture
+
+```mermaid
+graph TB
+    subgraph "Load Balancer"
+        LB[ALB/Nginx]
+    end
+
+    subgraph "Application"
+        FE[Frontend]
+        BE[Backend]
+        EX[Executor]
+    end
+
+    subgraph "Data"
+        PG[(PostgreSQL)]
+        S3[(S3/MinIO)]
+        ML[MLflow]
+    end
+
+    LB --> FE
+    LB --> BE
+    BE --> EX
+    BE --> PG
+    EX --> S3
+    EX --> ML
+```
+
+## Production Checklist
+
+<Steps>
+  <Step title="Configure Environment">
+    Set production environment variables
+  </Step>
+  <Step title="Set Up Database">Deploy PostgreSQL with backups</Step>
+  <Step title="Configure Storage">Set up S3 or MinIO for artifacts</Step>
+  <Step title="Enable HTTPS">Configure TLS certificates</Step>
+  <Step title="Set Up Monitoring">Deploy Prometheus + Grafana</Step>
+</Steps>
+
+## Next Steps
+
+Choose your deployment target and follow the guide:
+
+- [Docker Compose](/deployment/docker) - For development and small teams
+- [Kubernetes](/deployment/kubernetes) - For production at scale
+- [AWS](/deployment/aws) - For cloud-native deployment

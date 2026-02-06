@@ -1,0 +1,105 @@
+---
+title: "Tasks API"
+description: "Create and execute data transformation tasks"
+icon: "gear"
+---
+
+## List Tasks
+
+<ParamField path="GET" query="/tasks">
+  Returns all tasks for the authenticated user.
+</ParamField>
+
+```bash
+curl -b cookies.txt http://localhost:8030/tasks
+```
+
+---
+
+## Get Task
+
+<ParamField path="GET" query="/tasks/{uuid}">
+  Returns a specific task by UUID.
+</ParamField>
+
+---
+
+## Create Task
+
+<ParamField path="POST" query="/tasks">
+  Creates a new task.
+</ParamField>
+
+**Request Body:**
+
+```json
+{
+  "task_name": "Daily Revenue",
+  "task_type": "sql_task",
+  "connector_uuid": "abc123",
+  "task_params": {
+    "sql": "SELECT SUM(amount) FROM orders WHERE date = CURRENT_DATE"
+  }
+}
+```
+
+---
+
+## Update Task
+
+<ParamField path="PUT" query="/tasks/{uuid}">
+  Updates an existing task.
+</ParamField>
+
+---
+
+## Delete Task
+
+<ParamField path="DELETE" query="/tasks/{uuid}">
+  Deletes a task.
+</ParamField>
+
+---
+
+## Execute Task
+
+<ParamField path="POST" query="/tasks/{uuid}/execute">
+  Executes a task and returns results.
+</ParamField>
+
+**Request Body (optional):**
+
+```json
+{
+  "parameters": {
+    "start_date": "2024-01-01",
+    "end_date": "2024-01-31"
+  }
+}
+```
+
+**Response:**
+
+```json
+{
+  "execution_uuid": "exec123",
+  "status": "completed",
+  "started_at": "2024-01-15T10:30:00Z",
+  "completed_at": "2024-01-15T10:30:05Z",
+  "result": {
+    "row_count": 100,
+    "artifact_url": "s3://bucket/artifacts/exec123.parquet"
+  }
+}
+```
+
+---
+
+## Task Types
+
+| Type              | Description               |
+| ----------------- | ------------------------- |
+| `sql_task`        | SQL query execution       |
+| `python_task`     | Python code execution     |
+| `data_fetch_task` | API data fetching         |
+| `ml_task`         | Machine learning training |

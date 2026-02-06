@@ -1,0 +1,102 @@
+---
+title: "Pipelines API"
+description: "Orchestrate multi-step workflows"
+icon: "diagram-project"
+---
+
+## List Pipelines
+
+<ParamField path="GET" query="/pipelines">
+  Returns all pipelines for the authenticated user.
+</ParamField>
+
+---
+
+## Get Pipeline
+
+<ParamField path="GET" query="/pipelines/{uuid}">
+  Returns a specific pipeline by UUID.
+</ParamField>
+
+---
+
+## Create Pipeline
+
+<ParamField path="POST" query="/pipelines">
+  Creates a new pipeline.
+</ParamField>
+
+**Request Body:**
+
+```json
+{
+  "pipeline_name": "Daily ETL",
+  "description": "Extract, transform, load daily data",
+  "tasks": [
+    {
+      "task_uuid": "task1",
+      "depends_on": []
+    },
+    {
+      "task_uuid": "task2",
+      "depends_on": ["task1"]
+    }
+  ],
+  "schedule": "0 6 * * *"
+}
+```
+
+---
+
+## Update Pipeline
+
+<ParamField path="PUT" query="/pipelines/{uuid}">
+  Updates an existing pipeline.
+</ParamField>
+
+---
+
+## Delete Pipeline
+
+<ParamField path="DELETE" query="/pipelines/{uuid}">
+  Deletes a pipeline.
+</ParamField>
+
+---
+
+## Execute Pipeline
+
+<ParamField path="POST" query="/pipelines/{uuid}/execute">
+  Triggers a pipeline execution.
+</ParamField>
+
+**Response:**
+
+```json
+{
+  "run_id": "run123",
+  "status": "running",
+  "started_at": "2024-01-15T06:00:00Z"
+}
+```
+
+---
+
+## Get Pipeline Runs
+
+<ParamField path="GET" query="/pipelines/{uuid}/runs">
+  Returns execution history for a pipeline.
+</ParamField>
+
+```json
+[
+  {
+    "run_id": "run123",
+    "status": "completed",
+    "started_at": "2024-01-15T06:00:00Z",
+    "completed_at": "2024-01-15T06:05:00Z",
+    "tasks_completed": 5,
+    "tasks_total": 5
+  }
+]
+```

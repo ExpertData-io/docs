@@ -1,0 +1,103 @@
+---
+title: "Executions API"
+description: "Track and manage task and pipeline executions"
+icon: "list-check"
+---
+
+## List Executions
+
+<ParamField path="GET" query="/executions">
+  Returns all executions for the authenticated user.
+</ParamField>
+
+**Query Parameters:**
+
+| Parameter | Type    | Description                                   |
+| --------- | ------- | --------------------------------------------- |
+| `status`  | string  | Filter by status (running, completed, failed) |
+| `type`    | string  | Filter by type (task, pipeline)               |
+| `limit`   | integer | Max results (default 50)                      |
+
+---
+
+## Get Execution
+
+<ParamField path="GET" query="/executions/{uuid}">
+  Returns a specific execution with detailed status.
+</ParamField>
+
+**Response:**
+
+```json
+{
+  "uuid": "exec123",
+  "type": "pipeline",
+  "status": "completed",
+  "started_at": "2024-01-15T06:00:00Z",
+  "completed_at": "2024-01-15T06:05:00Z",
+  "steps": [
+    {
+      "task_uuid": "task1",
+      "status": "completed",
+      "duration_ms": 1500
+    },
+    {
+      "task_uuid": "task2",
+      "status": "completed",
+      "duration_ms": 2300
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "output.parquet",
+      "url": "s3://bucket/artifacts/exec123/output.parquet",
+      "size_bytes": 1024000
+    }
+  ]
+}
+```
+
+---
+
+## Cancel Execution
+
+<ParamField path="POST" query="/executions/{uuid}/cancel">
+  Cancels a running execution.
+</ParamField>
+
+---
+
+## Get Execution Logs
+
+<ParamField path="GET" query="/executions/{uuid}/logs">
+  Returns logs for an execution.
+</ParamField>
+
+**Response:**
+
+```json
+{
+  "logs": [
+    {
+      "timestamp": "2024-01-15T06:00:01Z",
+      "level": "INFO",
+      "message": "Starting pipeline execution"
+    },
+    {
+      "timestamp": "2024-01-15T06:00:02Z",
+      "level": "INFO",
+      "message": "Task task1 started"
+    }
+  ]
+}
+```
+
+---
+
+## Download Artifact
+
+<ParamField path="GET" query="/executions/{uuid}/artifacts/{artifact_name}">
+  Downloads an execution artifact.
+</ParamField>
+
+Returns the file content with appropriate Content-Type header.

@@ -1,0 +1,55 @@
+---
+title: "Environment Variables"
+description: "Complete configuration reference"
+icon: "sliders"
+---
+
+## Backend Configuration
+
+### Database
+
+| Variable      | Required | Default | Description       |
+| ------------- | -------- | ------- | ----------------- |
+| `DB_SERVER`   | ✅       | -       | Database host     |
+| `DB_PORT`     | ❌       | `5432`  | Database port     |
+| `DB_USERNAME` | ✅       | -       | Database user     |
+| `DB_PASSWORD` | ✅       | -       | Database password |
+| `DB_DATABASE` | ✅       | -       | Database name     |
+
+### Authentication
+
+| Variable                      | Required | Default | Description                 |
+| ----------------------------- | -------- | ------- | --------------------------- |
+| `SECRET_KEY`                  | ✅       | -       | JWT signing key (32+ chars) |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | ❌       | `30`    | Access token lifetime       |
+| `REFRESH_TOKEN_EXPIRE_DAYS`   | ❌       | `7`     | Refresh token lifetime      |
+
+### LLM Providers
+
+| Variable            | Required | Default | Description       |
+| ------------------- | -------- | ------- | ----------------- |
+| `OPENAI_API_KEY`    | ❌       | -       | OpenAI API key    |
+| `ANTHROPIC_API_KEY` | ❌       | -       | Anthropic API key |
+| `GOOGLE_API_KEY`    | ❌       | -       | Google AI API key |
+
+### CORS
+
+| Variable       | Required | Default | Description                       |
+| -------------- | -------- | ------- | --------------------------------- |
+| `CORS_ORIGINS` | ✅       | -       | Allowed origins (comma-separated) |
+
+## Frontend Configuration
+
+| Variable       | Required | Default | Description     |
+| -------------- | -------- | ------- | --------------- |
+| `VITE_API_URL` | ✅       | -       | Backend API URL |
+| `VITE_WS_URL`  | ❌       | -       | WebSocket URL   |
+
+## Executor Configuration
+
+| Variable           | Required | Default          | Description                |
+| ------------------ | -------- | ---------------- | -------------------------- |
+| `DATABASE_URL`     | ✅       | -                | Database connection string |
+| `MINIO_ENDPOINT`   | ❌       | `localhost:9000` | MinIO endpoint             |
+| `MINIO_ACCESS_KEY` | ❌       | -                | MinIO access key           |
+| `MINIO_SECRET_KEY` | ❌       | -                | MinIO secret key           |

@@ -1,0 +1,180 @@
+---
+title: "Connectors API"
+description: "Manage data source connections"
+icon: "plug"
+---
+
+## List Connectors
+
+<ParamField path="GET" query="/connectors">
+  Returns all connectors for the authenticated user.
+</ParamField>
+
+```bash
+curl -b cookies.txt http://localhost:8030/connectors
+```
+
+**Response:**
+
+```json
+[
+  {
+    "uuid": "abc123",
+    "connector_name": "Production DB",
+    "connector_type": "sql_connector",
+    "status": "active",
+    "created_on": "2024-01-15T10:30:00Z",
+    "updated_on": "2024-01-15T10:30:00Z"
+  }
+]
+```
+
+---
+
+## Get Connector
+
+<ParamField path="GET" query="/connectors/{uuid}">
+  Returns a specific connector by UUID.
+</ParamField>
+
+| Parameter | Type   | Description    |
+| --------- | ------ | -------------- |
+| `uuid`    | string | Connector UUID |
+
+```bash
+curl -b cookies.txt http://localhost:8030/connectors/abc123
+```
+
+---
+
+## Create Connector
+
+<ParamField path="POST" query="/connectors">
+  Creates a new connector.
+</ParamField>
+
+**Request Body:**
+
+```json
+{
+  "connector_name": "Analytics DB",
+  "connector_type": "sql_connector",
+  "connector_params": {
+    "engine": "postgresql",
+    "server": "db.example.com",
+    "port": 5432,
+    "database": "analytics",
+    "username": "user",
+    "password": "secret"
+  }
+}
+```
+
+```bash
+curl -b cookies.txt -X POST http://localhost:8030/connectors \
+  -H "Content-Type: application/json" \
+  -H "X-CSRF-Token: $CSRF" \
+  -d '{"connector_name": "Analytics DB", ...}'
+```
+
+**Response:** `201 Created`
+
+```json
+{
+  "uuid": "def456",
+  "connector_name": "Analytics DB",
+  "connector_type": "sql_connector",
+  "status": "pending",
+  "created_on": "2024-01-15T12:00:00Z"
+}
+```
+
+---
+
+## Update Connector
+
+<ParamField path="PUT" query="/connectors/{uuid}">
+  Updates an existing connector.
+</ParamField>
+
+```bash
+curl -b cookies.txt -X PUT http://localhost:8030/connectors/abc123 \
+  -H "Content-Type: application/json" \
+  -H "X-CSRF-Token: $CSRF" \
+  -d '{"connector_name": "Updated Name"}'
+```
+
+---
+
+## Delete Connector
+
+<ParamField path="DELETE" query="/connectors/{uuid}">
+  Deletes a connector.
+</ParamField>
+
+```bash
+curl -b cookies.txt -X DELETE http://localhost:8030/connectors/abc123 \
+  -H "X-CSRF-Token: $CSRF"
+```
+
+**Response:** `204 No Content`
+
+---
+
+## Test Connection
+
+<ParamField path="POST" query="/connectors/{uuid}/test">
+  Tests the connection to verify credentials.
+</ParamField>
+
+```bash
+curl -b cookies.txt -X POST http://localhost:8030/connectors/abc123/test \
+  -H "X-CSRF-Token: $CSRF"
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "message": "Connection successful",
+  "latency_ms": 45
+}
+```
+
+---
+
+## Connector Types
+
+| Type             | Engine Values                            | Description   |
+| ---------------- | ---------------------------------------- | ------------- |
+| `sql_connector`  | `postgresql`, `mysql`, `sqlite`, `mssql` | SQL databases |
+| `api_connector`  | —                                        | REST APIs     |
+| `file_connector` | `csv`, `parquet`, `json`, `excel`        | File sources  |
+
+---
+
+## Connector Parameters
+
+### SQL Connector
+
+| Parameter  | Type    | Required | Description     |
+| ---------- | ------- | -------- | --------------- |
+| `engine`   | string  | ✅       | Database engine |
+| `server`   | string  | ✅       | Host address    |
+| `port`     | integer | ✅       | Connection port |
+| `database` | string  | ✅       | Database name   |
+| `username` | string  | ✅       | Auth username   |
+| `password` | string  | ✅       | Auth password   |
+| `ssl_mode` | string  | ❌       | SSL mode        |
+
+### API Connector
+
+| Parameter   | Type   | Required | Description                         |
+| ----------- | ------ | -------- | ----------------------------------- |
+| `base_url`  | string | ✅       | Base URL                            |
+| `auth_type` | string | ✅       | `none`, `basic`, `api_key`, `oauth` |
+| `api_key`   | string | ❌       | API key (if auth_type=api_key)      |
+| `username`  | string | ❌       | Username (if auth_type=basic)       |
+| `password`  | string | ❌       | Password (if auth_type=basic)       |
+| `headers`   | object | ❌       | Custom headers                      |

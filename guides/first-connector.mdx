@@ -1,0 +1,67 @@
+---
+title: "Your First Connector"
+description: "Connect to a database and start querying data"
+icon: "plug"
+---
+
+## Overview
+
+In this guide, you'll create your first data connector and run a query.
+
+<Note>**Time required:** 5 minutes</Note>
+
+## Prerequisites
+
+- ExpertEngine running locally (see [Quick Start](/quickstart))
+- A database to connect to (we'll use the demo PostgreSQL)
+
+## Step 1: Navigate to Connectors
+
+Go to **Dashboard** → **Connectors** in the left sidebar.
+
+## Step 2: Create a New Connector
+
+1. Click **+ New Connector**
+2. Select **PostgreSQL** as the connector type
+
+## Step 3: Enter Connection Details
+
+Fill in the form:
+
+| Field        | Value                                           |
+| ------------ | ----------------------------------------------- |
+| **Name**     | Demo Database                                   |
+| **Host**     | `postgres` (or `localhost` if running natively) |
+| **Port**     | `5432`                                          |
+| **Database** | `expertengine`                                  |
+| **Username** | `postgres`                                      |
+| **Password** | `postgres`                                      |
+
+## Step 4: Test the Connection
+
+Click **Test Connection** to verify everything works.
+
+<Check>You should see "Connection successful" with a green checkmark.</Check>
+
+## Step 5: Save the Connector
+
+Click **Save** to create your connector.
+
+## Step 6: Query Your Data
+
+Now that your connector is ready:
+
+1. Go to **Genie** in the sidebar
+2. Ask: "Show me all tables in Demo Database"
+3. Genie will list your available tables
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Create a Task" icon="gear" href="/guides/first-pipeline">
+    Build reusable queries
+  </Card>
+  <Card title="Explore with Genie" icon="robot" href="/guides/using-genie">
+    Ask questions in natural language
+  </Card>
+</CardGroup>

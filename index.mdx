@@ -1,97 +1,91 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "Welcome to ExpertEngine"
+description: "AI-powered data analytics platform with intelligent agents, connectors, and pipelines"
 ---
 
-## Setting up
+<img
+  src="/images/hero-dark.png"
+  alt="ExpertEngine Dashboard"
+  className="rounded-lg border border-white/10"
+/>
 
-Get your documentation site up and running in minutes.
+## What is ExpertEngine?
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
+ExpertEngine is an **enterprise-grade data analytics platform** that combines the power of AI with modular data workflows. Connect to any data source, build reusable transformations, and let Genie—your AI assistant—do the heavy lifting.
 
-## Make it yours
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Get up and running in 5 minutes
+  </Card>
+  <Card title="Architecture" icon="diagram-project" href="/architecture">
+    Understand how ExpertEngine works
+  </Card>
+  <Card title="API Reference" icon="code" href="/api/introduction">
+    Explore the REST API
+  </Card>
+  <Card title="Deployment" icon="cloud" href="/deployment/overview">
+    Deploy to production
+  </Card>
+</CardGroup>
 
-Design a docs site that looks great and empowers your users.
+## Core Features
+
+<CardGroup cols={3}>
+  <Card title="🔌 Connectors" href="/concepts/connectors">
+    Connect to databases, APIs, cloud warehouses, and files with encrypted
+    credentials
+  </Card>
+  <Card title="⚙️ Tasks" href="/concepts/tasks">
+    Build reusable data transformations with SQL and Python
+  </Card>
+  <Card title="🔄 Pipelines" href="/concepts/pipelines">
+    Chain tasks into end-to-end workflows with orchestration
+  </Card>
+  <Card title="🤖 Genie AI" href="/concepts/genie">
+    Natural language interface to your data—just ask!
+  </Card>
+  <Card title="📊 Notebooks" href="/concepts/notebooks">
+    Interactive Jupyter-style data exploration
+  </Card>
+  <Card title="📈 ML Training" href="/concepts/mlflow">
+    MLflow-integrated experiment tracking and model training
+  </Card>
+</CardGroup>
+
+## Why ExpertEngine?
 
 <Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
+  <div>
+    ### For Data Teams - **No-code connectors** to 20+ data sources - **Reusable
+    tasks** that anyone can run - **Visual pipelines** with dependency
+    management - **Genie AI** for natural language queries
+  </div>
+  <div>
+    ### For Developers - **FastAPI backend** with OpenAPI docs - **React
+    frontend** with modern design - **Metaflow orchestration** for scalable
+    pipelines - **Kubernetes-ready** with Terraform modules
+  </div>
 </Columns>
 
-## Create beautiful pages
+## Getting Started
 
-Everything you need to create world-class documentation.
+<Steps>
+  <Step title="Install">
+    Clone the repository and start with Docker Compose ```bash git clone
+    https://github.com/ExpertData-io/expertdata-backend.git cd
+    expertengine-infra/local && make up ```
+  </Step>
+  <Step title="Connect">
+    Create your first data connector ``` Navigate to Dashboard → Connectors →
+    New ```
+  </Step>
+  <Step title="Ask Genie">
+    Open Genie and ask a question ``` "Show me the top 10 customers by revenue"
+    ```
+  </Step>
+</Steps>
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
-
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
+<Card title="Not sure where to start?" icon="message-bot" href="/quickstart">
+  Follow our step-by-step quickstart guide to create your first analysis in
+  under 10 minutes.
 </Card>

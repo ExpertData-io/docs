@@ -1,0 +1,104 @@
+---
+title: "Docker Deployment"
+description: "Deploy with Docker Compose"
+icon: "docker"
+---
+
+## Overview
+
+Docker Compose is the simplest way to deploy ExpertEngine for development or small teams.
+
+## Prerequisites
+
+- Docker Desktop 20.0+
+- Docker Compose 2.0+
+- Git
+
+## Quick Deploy
+
+```bash
+# Clone infrastructure repo
+git clone https://github.com/ExpertData-io/expertengine-infra.git
+cd expertengine-infra/local
+
+# Start all services
+make up
+
+# Check status
+make status
+```
+
+## Services
+
+| Service    | Port      | Description       |
+| ---------- | --------- | ----------------- |
+| Frontend   | 3000      | Web application   |
+| Backend    | 8030      | API server        |
+| Executor   | 8040      | Execution service |
+| PostgreSQL | 5432      | Database          |
+| MinIO      | 9000/9001 | Object storage    |
+| MLflow     | 5000      | ML tracking       |
+
+## Configuration
+
+### Environment Variables
+
+Copy and edit the environment file:
+
+```bash
+cp .env.example .env
+```
+
+Key variables:
+
+```bash
+# Database
+POSTGRES_PASSWORD=your-secure-password
+
+# JWT Secret
+SECRET_KEY=your-32-character-key
+
+# LLM API Keys
+OPENAI_API_KEY=sk-...
+```
+
+### Volume Mounts
+
+Data is persisted in Docker volumes:
+
+- `postgres_data` - Database files
+- `minio_data` - Object storage
+- `mlflow_data` - MLflow artifacts
+
+## Commands
+
+```bash
+# Start services
+make up
+
+# Stop services
+make down
+
+# View logs
+make logs
+
+# Restart a service
+docker compose restart backend
+
+# Rebuild after code changes
+make rebuild
+```
+
+## Production Considerations
+
+<Warning>
+  Docker Compose is not recommended for production. Use Kubernetes for
+  scalability and reliability.
+</Warning>
+
+If you must use Docker Compose in production:
+
+1. Use a reverse proxy (Nginx) with HTTPS
+2. Enable database backups
+3. Use external PostgreSQL (RDS)
+4. Monitor with Prometheus

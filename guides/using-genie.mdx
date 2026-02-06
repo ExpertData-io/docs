@@ -1,0 +1,142 @@
+---
+title: "Using Genie"
+description: "Master the AI assistant for data analytics"
+icon: "robot"
+---
+
+## Overview
+
+Genie is your AI-powered data analyst. This guide shows you how to get the most out of it.
+
+## Getting Started
+
+1. Open **Explorer** → **Genie** from the sidebar
+2. Type your first question
+
+## Basic Queries
+
+### Explore Your Data
+
+```
+What tables are in the production database?
+```
+
+```
+Show me the schema of the orders table
+```
+
+```
+How many records are in each table?
+```
+
+### Analyze Data
+
+```
+What's the total revenue this month?
+```
+
+```
+Show me the top 10 products by sales
+```
+
+```
+What's the average order value by customer segment?
+```
+
+### Create Visualizations
+
+```
+Create a bar chart of revenue by region
+```
+
+```
+Show monthly trends as a line chart
+```
+
+```
+Plot the distribution of order amounts
+```
+
+## Advanced Techniques
+
+### Specify Data Sources
+
+If you have multiple connectors:
+
+```
+Using the analytics database, show me user signups by month
+```
+
+### Chain Analyses
+
+Build on previous results:
+
+```
+You: Show me revenue by product category
+Genie: [Shows results]
+
+You: Now show the same for last year
+Genie: [Shows year-over-year comparison]
+
+You: Calculate the growth rate
+Genie: [Calculates percentage change]
+```
+
+### Create Resources
+
+```
+Create a task that calculates daily revenue and save it as "Daily Revenue Report"
+```
+
+```
+Build a pipeline that runs my ETL tasks every morning at 6 AM
+```
+
+## Tips for Better Results
+
+<AccordionGroup>
+  <Accordion title="Be specific about time ranges">
+    Instead of "recent sales", say "sales in the last 30 days"
+  </Accordion>
+  <Accordion title="Mention the connector">
+    "Query the production database" helps Genie find the right source
+  </Accordion>
+  <Accordion title="Ask for formats">
+    "Show as a pie chart" or "export as CSV" to get specific outputs
+  </Accordion>
+  <Accordion title="Use follow-ups">
+    Genie remembers context, so you can refine results iteratively
+  </Accordion>
+</AccordionGroup>
+
+## Example Session
+
+```
+You: What connectors do I have?
+
+Genie: You have 2 connectors:
+1. Production DB (PostgreSQL)
+2. Analytics API (REST)
+
+You: Using Production DB, show me the 5 most recent orders
+
+Genie: Here are the 5 most recent orders:
+[Table with order_id, customer, amount, date]
+
+You: Add the customer name and create a chart
+
+Genie: [Shows bar chart of order amounts by customer]
+
+You: Save this as a task called "Recent Orders Report"
+
+Genie: ✅ Created task "Recent Orders Report"
+```
+
+## Keyboard Shortcuts
+
+| Shortcut        | Action                    |
+| --------------- | ------------------------- |
+| `Enter`         | Send message              |
+| `Shift + Enter` | New line                  |
+| `↑` / `↓`       | Navigate history          |
+| `Esc`           | Cancel current generation |

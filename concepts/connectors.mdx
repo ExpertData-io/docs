@@ -1,0 +1,119 @@
+---
+title: "Connectors"
+description: "Connect to any data source with encrypted credentials"
+icon: "plug"
+---
+
+## What are Connectors?
+
+**Connectors** are secure connections to your data sources. They store encrypted credentials and connection parameters, allowing you to connect once and query repeatedly.
+
+<Note>All credentials are encrypted using AES-256 before storage.</Note>
+
+## Supported Connectors
+
+<Tabs>
+  <Tab title="Databases">
+    | Connector | Description | |-----------|-------------| | **PostgreSQL** |
+    Full-featured SQL database | | **MySQL** | Popular open-source database | |
+    **SQLite** | File-based database | | **SQL Server** | Microsoft SQL Server |
+    | **Oracle** | Oracle Database |
+  </Tab>
+  <Tab title="Data Warehouses">
+    | Connector | Description | |-----------|-------------| | **Snowflake** |
+    Cloud data warehouse | | **BigQuery** | Google Cloud analytics | |
+    **Redshift** | AWS data warehouse | | **Databricks** | Unified analytics
+    platform |
+  </Tab>
+  <Tab title="APIs">
+    | Connector | Description | |-----------|-------------| | **REST API** |
+    Generic HTTP endpoints | | **GraphQL** | GraphQL APIs | | **Kaggle** |
+    Kaggle datasets | | **Alpha Vantage** | Financial data |
+  </Tab>
+  <Tab title="Files">
+    | Connector | Description | |-----------|-------------| | **CSV** |
+    Comma-separated values | | **Parquet** | Columnar storage format | |
+    **JSON** | JSON files and APIs | | **Excel** | Excel spreadsheets |
+  </Tab>
+</Tabs>
+
+## Creating a Connector
+
+<Steps>
+  <Step title="Navigate to Connectors">
+    Go to **Dashboard** → **Connectors**
+  </Step>
+  <Step title="Click New Connector">Click the **+ New Connector** button</Step>
+  <Step title="Select Type">
+    Choose your data source type (e.g., PostgreSQL)
+  </Step>
+  <Step title="Enter Details">
+    Fill in the connection parameters: - **Name**: A friendly name for the
+    connector - **Host**: Database server address - **Port**: Connection port -
+    **Database**: Database name - **Username**: Auth username - **Password**:
+    Auth password (encrypted)
+  </Step>
+  <Step title="Test Connection">
+    Click **Test Connection** to verify connectivity
+  </Step>
+  <Step title="Save">Click **Save** to create the connector</Step>
+</Steps>
+
+## Connector Configuration
+
+### SQL Databases
+
+```json
+{
+  "connector_name": "Production DB",
+  "connector_type": "sql_connector",
+  "connector_params": {
+    "engine": "postgresql",
+    "server": "db.example.com",
+    "port": 5432,
+    "database": "analytics",
+    "username": "user",
+    "password": "***encrypted***"
+  }
+}
+```
+
+### REST APIs
+
+```json
+{
+  "connector_name": "Weather API",
+  "connector_type": "api_connector",
+  "connector_params": {
+    "base_url": "https://api.weather.com/v1",
+    "auth_type": "api_key",
+    "api_key": "***encrypted***",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}
+```
+
+## Using Connectors
+
+Once created, connectors can be used in:
+
+<CardGroup cols={2}>
+  <Card title="Tasks" icon="gear">
+    Reference connectors in SQL and Python tasks
+  </Card>
+  <Card title="Genie" icon="robot">
+    Ask Genie to query connected databases
+  </Card>
+  <Card title="Notebooks" icon="book">
+    Access data in interactive notebooks
+  </Card>
+  <Card title="Pipelines" icon="diagram-project">
+    Include in automated workflows
+  </Card>
+</CardGroup>
+
+## API Reference
+
+See [Connectors API](/api/connectors) for full endpoint documentation.
